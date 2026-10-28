@@ -1,0 +1,178 @@
+ENGINE / 4.7.2.stable.official.ed1daf0bf
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] _update_scan_actions | Started Scanning actions... (5 steps)
+[   0% ] _update_scan_actions | cafe.png
+[  16% ] _update_scan_actions | district.png
+[  33% ] _update_scan_actions | map.png
+[  50% ] _update_scan_actions | pause.png
+[  66% ] _update_scan_actions | world.png
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started (Re)Importing Assets (5 steps)
+[   0% ] reimport | Preparing files to reimport...
+[  16% ] reimport | Preparing files to reimport...
+[  33% ] reimport | Preparing files to reimport...
+[  50% ] reimport | Preparing files to reimport...
+[  66% ] reimport | Preparing files to reimport...
+[   0% ] reimport | Executing pre-reimport operations...
+[   0% ] reimport | cafe.png
+[  16% ] reimport | district.png
+[  33% ] reimport | map.png
+[  50% ] reimport | pause.png
+[  66% ] reimport | world.png
+[  83% ] reimport | Finalizing Asset Import...
+[ DONE ] reimport
+
+[   0% ] reimport | Started (Re)Importing Assets (5 steps)
+[   0% ] reimport | Executing post-reimport operations...
+[ DONE ] reimport
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS / requested Godot 4.7.2 engine
+PASS / six unique neighborhood markers
+PASS / six landmarks and two exit components
+PASS / spawn settles on ground
+PASS / visible player geometry
+PASS / third-person camera is current
+PASS / mapped input: move_forward
+PASS / mapped input: move_back
+PASS / mapped input: move_left
+PASS / mapped input: move_right
+PASS / mapped input: sprint
+PASS / mapped input: interact
+PASS / mapped input: map
+PASS / mapped input: pause
+PASS / mapped input: debug_overlay
+PASS / walking moves at approximately 5 m/s
+PASS / sprint increases movement speed without simulation stats
+PASS / north boundary blocks escape and fall-through
+PASS / building facade blocks character collision
+PASS / ground coverage at (-122.0, 0.1, -122.0)
+PASS / ground coverage at (122.0, 0.1, -122.0)
+PASS / ground coverage at (-122.0, 0.1, 122.0)
+PASS / ground coverage at (122.0, 0.1, 122.0)
+PASS / ground coverage at (0.0, 0.0, 0.0)
+PASS / forward focus within 2.5m: apartment
+PASS / E activates exactly once: apartment
+PASS / landmark recorded: apartment
+PASS / enter interior: apartment
+PASS / interior floor collision: apartment
+PASS / exit prompt reachable: apartment
+PASS / exit round trip: apartment
+PASS / forward focus within 2.5m: cafe
+PASS / E activates exactly once: cafe
+PASS / landmark recorded: cafe
+PASS / enter interior: cafe
+PASS / interior floor collision: cafe
+PASS / exit prompt reachable: cafe
+PASS / exit round trip: cafe
+PASS / forward focus within 2.5m: market
+PASS / E activates exactly once: market
+PASS / landmark recorded: market
+PASS / forward focus within 2.5m: studio
+PASS / E activates exactly once: studio
+PASS / landmark recorded: studio
+PASS / forward focus within 2.5m: park
+PASS / E activates exactly once: park
+PASS / landmark recorded: park
+PASS / forward focus within 2.5m: gym
+PASS / E activates exactly once: gym
+PASS / landmark recorded: gym
+PASS / out-of-range target has no prompt
+PASS / E outside radius cannot activate
+PASS / target behind camera direction has no focus
+PASS / wall occludes otherwise reachable marker
+PASS / focus returns when occluder is removed
+PASS / mouse orbits camera
+PASS / camera pitch clamps
+PASS / map opens and pauses physics
+PASS / map releases cursor
+PASS / map blocks movement and E
+PASS / Esc closes map without opening another modal
+PASS / Esc opens pause
+PASS / Esc resumes
+PASS / map opens and pauses physics
+PASS / map releases cursor
+PASS / map blocks movement and E
+PASS / Esc closes map without opening another modal
+PASS / Esc opens pause
+PASS / Esc resumes
+PASS / map opens and pauses physics
+PASS / map releases cursor
+PASS / map blocks movement and E
+PASS / Esc closes map without opening another modal
+PASS / Esc opens pause
+PASS / Esc resumes
+PASS / movement recovers after repeated menu cycles
+PASS / continuous street/perimeter traversal: (0.0, 0.05, 120.0)
+PASS / continuous street/perimeter traversal: (-120.0, 0.05, 0.0)
+PASS / continuous street/perimeter traversal: (-120.0, 0.05, 120.0)
+PASS / continuous street/perimeter traversal: (-120.0, 0.05, -120.0)
+PASS / continuous street/perimeter traversal: (120.0, 0.05, -120.0)
+PASS / continuous street/perimeter traversal: (120.0, 0.05, 120.0)
+PASS / F3 toggles debug overlay
+RESULT / 83 checks, 0 failures
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] savepack | Started Packing (102 steps)
+[   1% ] savepack | Storing File: res://scripts/world/interior.gdc
+[   8% ] savepack | Storing File: res://scripts/world/blockout.gdc
+[  15% ] savepack | Storing File: res://scripts/world/neighborhood.gdc
+[  22% ] savepack | Storing File: res://scripts/world/main.gdc
+[  29% ] savepack | Storing File: res://scripts/ui/map_view.gdc
+[  35% ] savepack | Storing File: res://.godot/exported/133200997/export-087d785bf5027725196895bd45adeefe-player.scn
+[  42% ] savepack | Storing File: res://.godot/exported/133200997/export-f26fe175837e58804f1c48b99041ac16-hud.scn
+[  50% ] savepack | Storing File: res://.godot/exported/133200997/export-3d120d343b031b57a69a1c7f10ff83c9-apartment.scn
+[  57% ] savepack | Storing File: res://.godot/exported/133200997/export-62b2a7e042148a88bf2c0749b8a510e9-cafe.scn
+[  64% ] savepack | Storing File: res://.godot/exported/133200997/export-98a69665cb22442b8327bf5b6c53b78b-neighborhood.scn
+[  70% ] savepack | Storing File: res://.godot/exported/133200997/export-c3c40bb4d42d26c7c74cc88080d6723d-boot.scn
+[  77% ] savepack | Storing File: res://scripts/actors/player_controller.gdc
+[  84% ] savepack | Storing File: res://scripts/interactions/interaction_component.gdc
+[  91% ] savepack | Storing File: res://scripts/ui/hud_controller.gdc
+[  91% ] savepack | Storing File: res://scripts/world/interior.gd.remap
+[  91% ] savepack | Storing File: res://scripts/world/blockout.gd.remap
+[  91% ] savepack | Storing File: res://scripts/world/neighborhood.gd.remap
+[  91% ] savepack | Storing File: res://scripts/world/main.gd.remap
+[  91% ] savepack | Storing File: res://scripts/ui/map_view.gd.remap
+[  91% ] savepack | Storing File: res://scenes/actors/player.tscn.remap
+[  91% ] savepack | Storing File: res://scenes/ui/hud.tscn.remap
+[  91% ] savepack | Storing File: res://scenes/world/interiors/apartment.tscn.remap
+[  91% ] savepack | Storing File: res://scenes/world/interiors/cafe.tscn.remap
+[  91% ] savepack | Storing File: res://scenes/world/neighborhood.tscn.remap
+[  91% ] savepack | Storing File: res://scenes/boot.tscn.remap
+[  91% ] savepack | Storing File: res://scripts/actors/player_controller.gd.remap
+[  91% ] savepack | Storing File: res://scripts/interactions/interaction_component.gd.remap
+[  91% ] savepack | Storing File: res://scripts/ui/hud_controller.gd.remap
+[  91% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  91% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  91% ] savepack | Storing File: res://project.binary
+[ DONE ] savepack
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CHECKS PASSED / editor import, integration suite, resource-pack export, packed boot

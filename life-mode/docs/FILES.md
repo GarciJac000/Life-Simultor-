@@ -1,0 +1,50 @@
+# Created files
+
+All application files were created under `life-mode/`. Existing design documents and the repository README were not modified. Godot-generated `.uid` and screenshot `.import` metadata are included; `.godot/`, Python bytecode and export artifacts are excluded.
+
+- `.gitignore`
+- `README.md`
+- `assets/licenses/README.md`
+- `docs/FILES.md`
+- `docs/QC.md`
+- `docs/automated-checks.txt`
+- `docs/rendered-checks.txt`
+- `docs/screenshots/cafe.png`
+- `docs/screenshots/cafe.png.import`
+- `docs/screenshots/district.png`
+- `docs/screenshots/district.png.import`
+- `docs/screenshots/map.png`
+- `docs/screenshots/map.png.import`
+- `docs/screenshots/pause.png`
+- `docs/screenshots/pause.png.import`
+- `docs/screenshots/world.png`
+- `docs/screenshots/world.png.import`
+- `export_presets.cfg`
+- `project.godot`
+- `scenes/actors/player.tscn`
+- `scenes/boot.tscn`
+- `scenes/ui/hud.tscn`
+- `scenes/world/interiors/apartment.tscn`
+- `scenes/world/interiors/cafe.tscn`
+- `scenes/world/neighborhood.tscn`
+- `scripts/actors/player_controller.gd`
+- `scripts/actors/player_controller.gd.uid`
+- `scripts/interactions/interaction_component.gd`
+- `scripts/interactions/interaction_component.gd.uid`
+- `scripts/ui/hud_controller.gd`
+- `scripts/ui/hud_controller.gd.uid`
+- `scripts/ui/map_view.gd`
+- `scripts/ui/map_view.gd.uid`
+- `scripts/world/blockout.gd`
+- `scripts/world/blockout.gd.uid`
+- `scripts/world/interior.gd`
+- `scripts/world/interior.gd.uid`
+- `scripts/world/main.gd`
+- `scripts/world/main.gd.uid`
+- `scripts/world/neighborhood.gd`
+- `scripts/world/neighborhood.gd.uid`
+- `tests/run_checks.py`
+- `tests/smoke.gd`
+- `tests/smoke.gd.uid`
+- `tests/visual_check.gd`
+- `tests/visual_check.gd.uid`
