@@ -49,6 +49,7 @@ func _ready() -> void:
   for z in [-94, 92]:
    Blockout.box(self, Vector3(x, 4, z), Vector3(18, 8, 16), Color("9b9d95"))
  Blockout.sign_text(self, Vector3(0, 7, -110), "LIFE//MODE  /  NORTH DISTRICT", 64)
+ VisualPolish.decorate_neighborhood(self, LOCATIONS)
 
 func build_courtyard(at: Vector3, color: Color, park: bool) -> void:
  Blockout.box(self, at + Vector3(0, 0.03, 0), Vector3(28, 0.04, 28), color, false)
