@@ -21,7 +21,8 @@ func _ready() -> void:
   Blockout.box(self, Vector3(0, 1, -5), Vector3(12, 2, 1.5), Color("84715d"))
   for x in [-5, 5]:
    Blockout.box(self, Vector3(x, 0.65, 0), Vector3(2, 1.3, 2), Color("b5a484"))
- Blockout.sign_text(self, Vector3(0, 3.2, -6), "APARTMENT / BLOCKOUT" if location_id == &"apartment" else "CAFE / BLOCKOUT")
+ Blockout.sign_text(self, Vector3(0, 3.2, -6), "APARTMENT / NORTH DISTRICT" if location_id == &"apartment" else "CAFE / OPEN")
+ VisualPolish.decorate_interior(self, location_id)
  exit_marker = InteractionComponent.new()
  exit_marker.location_id = &"exit"
  exit_marker.display_name = "BACK TO NEIGHBORHOOD"
