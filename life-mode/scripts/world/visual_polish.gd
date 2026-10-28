@@ -11,6 +11,7 @@ static func surface(parent: Node3D, at: Vector3, size: Vector3, tint: Color, rou
  finish.roughness = roughness
  finish.metallic = metallic
  part.material_override = finish
+ part.add_to_group("visual_polish")
  if size.y < 0.05:
   part.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
  return part
@@ -27,6 +28,7 @@ static func ellipsoid(parent: Node3D, at: Vector3, dimensions: Vector3, tint: Co
  finish.albedo_color = tint
  finish.roughness = roughness
  part.material_override = finish
+ part.add_to_group("visual_polish")
  parent.add_child(part)
 
 static func pole(parent: Node3D, at: Vector3, height: float, radius: float, tint: Color, metallic: float = 0.1) -> void:
@@ -146,6 +148,7 @@ static func decorate_interior(parent: Node3D, location_id: StringName) -> void:
  light.omni_range = 9
  light.shadow_enabled = false
  light.position = Vector3(0, 3.45, 0)
+ light.add_to_group("visual_polish")
  parent.add_child(light)
  if location_id == &"apartment":
   surface(parent, Vector3(-5, 0.62, -4), Vector3(3.5, 0.3, 2.2), Color("b0a8a0"), 0.86)
