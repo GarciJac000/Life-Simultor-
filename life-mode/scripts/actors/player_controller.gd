@@ -15,6 +15,7 @@ var gravity: float = 20.0
 
 func _ready() -> void:
  arm.add_excluded_object(get_rid())
+ VisualPolish.decorate_avatar(visual)
  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
