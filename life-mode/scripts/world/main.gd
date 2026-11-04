@@ -17,6 +17,10 @@ var visited: Dictionary = {}
 func _ready() -> void:
  GameState.start_new_game()
  SimulationSystem.realtime_enabled = true
+ VisualPolish.apply_world_atmosphere(self)
+ var atmosphere := DayAtmosphere.new()
+ atmosphere.name = "DayAtmosphere"
+ add_child(atmosphere)
  neighborhood = NeighborhoodScene.instantiate()
  add_child(neighborhood)
  var slot := 0
