@@ -53,6 +53,19 @@ Optional rendered checks on a desktop display:
 godot --path life-mode --audio-driver Dummy --script res://tests/visual_check.gd
 ```
 
+
+## Web (browser) play
+
+Export uses the Godot **Web** preset (Compatibility / single-thread). From `life-mode/`:
+
+```sh
+# requires Godot 4.7.2 export templates installed
+godot --headless --path . --export-debug "Web" exports/web/index.html
+python3 tools/serve_web.py
+```
+
+Then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/). The helper server sets `application/wasm` and isolation headers.
+
 ## Scope and limitations
 
 Milestone 1 adds clock, needs, economy, jobs/activities, phone HUD and market/studio interiors. **Not included yet:** named NPCs/schedules, dialogue memory, authored events, tutorial arc, disk save/load UI, polished art/audio. Serialize/deserialize exists on `GameState` for tests and as foundation for Milestone 3 persistence.
