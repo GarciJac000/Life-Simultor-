@@ -107,9 +107,18 @@ func run() -> void:
    await key(&"pause")
    check(world.hud.modal.is_empty(), "cancel outdoor activity confirm: " + String(id))
  var cafe: InteractionComponent = world.neighborhood.markers[&"cafe"]
+ var apartment: InteractionComponent = world.neighborhood.markers[&"apartment"]
+ player.teleport(cafe.global_position + Vector3(0, 0.05, 2))
+ await frames()
+ check(player.focused == cafe, "cafe focused for unique material check")
+ check(cafe.focus_material != apartment.focus_material, "each marker owns a distinct focus material")
+ check(cafe.focus_material.emission_enabled, "focused marker emission enabled")
+ check(not apartment.focus_material.emission_enabled, "unfocused marker keeps non-emissive material")
+ check(apartment.focus_material.albedo_color.is_equal_approx(Color("c8c4ac")), "unfocused marker keeps idle ring color")
  player.teleport(cafe.global_position + Vector3(0, 0.05, 3.2))
  await frames()
  check(player.focused == null, "out-of-range target has no prompt")
+ check(not cafe.focus_material.emission_enabled, "clearing focus restores idle emission on that marker only")
  var activation_count := cafe.activation_count
  await key(&"interact")
  check(cafe.activation_count == activation_count, "E outside radius cannot activate")

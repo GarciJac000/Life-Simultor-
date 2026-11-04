@@ -19,7 +19,9 @@ func _ready() -> void:
  ring.outer_radius = 0.55
  highlight.mesh = ring
  highlight.position.y = 0.08
- focus_material = Blockout.material(Color("c8c4ac"))
+ # Duplicate so set_focused() cannot mutate MaterialLibrary's shared cache
+ # and light up every marker that requested the same parameters.
+ focus_material = Blockout.material(Color("c8c4ac")).duplicate() as StandardMaterial3D
  highlight.material_override = focus_material
  add_child(highlight)
  var sign_label := Blockout.sign_text(self, Vector3(0, 2.6, 0), "EXIT / STREET" if location_id == &"exit" else display_name, 36)
