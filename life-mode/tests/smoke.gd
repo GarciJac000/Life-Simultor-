@@ -48,14 +48,21 @@ func run() -> void:
  world = load("res://scenes/boot.tscn").instantiate()
  root.add_child(world)
  player = world.player
+ var simulation: Node = root.get_node("SimulationSystem")
+ var clock: Node = root.get_node("WorldClock")
+ var state: Node = root.get_node("GameState")
+ simulation.realtime_enabled = false
  await frames(12)
  check(Engine.get_version_info().string.begins_with("4.7.2"), "requested Godot 4.7.2 engine")
  check(world.neighborhood.markers.size() == 6, "six unique neighborhood markers")
- check(get_nodes_in_group("interactables").size() == 8, "six landmarks and two exit components")
+ # 6 outdoor markers + apartment(3 stations+exit) + cafe(2+exit) + market(2+exit) + studio(2+exit) = 19
+ check(get_nodes_in_group("interactables").size() == 19, "six landmarks and interior stations/exits")
  check(player.is_on_floor() and player.global_position.y > -0.05, "spawn settles on ground")
  check(player.get_node("Visual/Body").mesh != null, "visible player geometry")
  check(player.camera.current, "third-person camera is current")
- for action in [&"move_forward", &"move_back", &"move_left", &"move_right", &"sprint", &"interact", &"map", &"pause", &"debug_overlay"]:
+ check(clock.absolute_game_minutes == 540, "simulation clock starts at Day 1 09:00")
+ check(state.money == 1250, "simulation bank starts at $1250")
+ for action in [&"move_forward", &"move_back", &"move_left", &"move_right", &"sprint", &"interact", &"map", &"phone", &"pause", &"debug_overlay"]:
   check(InputMap.has_action(action) and not InputMap.action_get_events(action).is_empty(), "mapped input: " + String(action))
  # Exercise actual CharacterBody physics and action input, rather than only testing constants.
  player.teleport(Vector3(0, 0.05, 65))
@@ -87,7 +94,7 @@ func run() -> void:
   await key(&"interact")
   check(marker.activation_count == 1, "E activates exactly once: " + String(id))
   check(world.visited.has(id), "landmark recorded: " + String(id))
-  if id in [&"apartment", &"cafe"]:
+  if id in [&"apartment", &"cafe", &"market", &"studio"]:
    check(world.current_location == id and world.interiors[id].visible and not world.neighborhood.visible, "enter interior: " + String(id))
    await frames(12)
    check(player.is_on_floor(), "interior floor collision: " + String(id))
@@ -95,6 +102,10 @@ func run() -> void:
    await key(&"interact")
    await frames()
    check(world.current_location == &"outside" and world.neighborhood.visible, "exit round trip: " + String(id))
+  elif id in [&"park", &"gym"]:
+   check(world.hud.modal == &"action", "outdoor activity opens confirm: " + String(id))
+   await key(&"pause")
+   check(world.hud.modal.is_empty(), "cancel outdoor activity confirm: " + String(id))
  var cafe: InteractionComponent = world.neighborhood.markers[&"cafe"]
  player.teleport(cafe.global_position + Vector3(0, 0.05, 3.2))
  await frames()
@@ -147,6 +158,10 @@ func run() -> void:
   check(paused and world.hud.modal == &"pause", "Esc opens pause")
   await key(&"pause")
   check(not paused and world.hud.modal.is_empty(), "Esc resumes")
+ await key(&"phone")
+ check(paused and world.hud.modal == &"phone", "Tab opens phone")
+ await key(&"phone")
+ check(not paused and world.hud.modal.is_empty(), "Tab closes phone")
  check(await walk(&"move_back", 15) > 0.8, "movement recovers after repeated menu cycles")
  # Continuous traversal of both main streets and the outer perimeter.
  for route in [

@@ -1,9 +1,9 @@
-# LIFE//MODE — Milestone 0
+# LIFE//MODE — Milestone 1
 
-Original desktop 3D neighborhood graybox. **Godot 4.7.2 stable, GDScript, Forward+.**
-Open `project.godot` in that editor and press **F6 on `scenes/boot.tscn`** or **F5** to run the project. No packages, accounts, credentials, external assets, or backend are required. Launch from a terminal with `godot --path life-mode` from the parent repository.
+Original desktop 3D neighborhood life-sim prototype. **Godot 4.7.2 stable, GDScript, Forward+.**
+Open `project.godot` in that editor and press **F5** (main scene `scenes/boot.tscn`) to run. No packages, accounts, credentials, external assets, or backend are required. Launch from a terminal with `godot --path life-mode` from the parent repository.
 
-The player starts outside the apartment, facing its entrance. Six numbered landmarks occupy a bounded **250 × 250 metre** neighborhood. Streets, sidewalks, building masses, boundary walls, signs, and a visible capsule character are original primitive geometry. One Godot unit represents one metre. Ground is continuous; sidewalks are visual surfaces flush with it to avoid requiring a step-climbing controller.
+The player starts outside the apartment on **Day 1, 09:00** with **$1,250**, six needs, and optional first-week goals. A living clock advances in free roam (1 real second ≈ 2 game minutes) and during confirmed actions. Four interiors (apartment, cafe, market, studio) plus park hangout and gym exercise stations are playable.
 
 | Control | Action |
 |---|---|
@@ -11,54 +11,50 @@ The player starts outside the apartment, facing its entrance. Six numbered landm
 | Left Shift | Sprint (5 m/s walk; 9 m/s sprint) |
 | Mouse | Orbit camera; pitch is clamped |
 | E | Activate highlighted forward marker within 2.5 m |
+| Tab | Open/close phone (Today / Map / Wallet / Goals / People) |
 | M | Open/close district map |
 | Esc | Close current overlay, or pause/resume |
-| F3 | Toggle position, grounded state, focus, speed, engine and FPS debug overlay |
+| F3 | Toggle position, grounded state, focus, clock minute, FPS debug overlay |
 
-Pause and map stop physics and release the cursor. The menu button also resumes play. The spring arm retracts against walls and eases outward after clearing them. An unobstructed forward target must show an E prompt before activation. Apartment and cafe entrances teleport to small separate interior scenes; their exit markers return to the corresponding street entrance. Other markers provide discovery toasts, not later-milestone activities.
+Pause, map, phone and action confirm stop physics and release the cursor. Activities always show cost/time/effects and require confirm. Bank balance cannot go negative; weekly rent is due Day 8 00:00 with arrears if underfunded.
+
+## Playable Milestone 1 loop
+
+1. Enter the **cafe** → barista counter → confirm **Work cafe shift** (+$120, +12 Career XP, 4 game hours).
+2. Open **Tab → Wallet** to read the ledger and rent due.
+3. Enter the **market** → buy groceries ($35 → 5 portions).
+4. Return to the **apartment** → eat, shower, sleep.
+5. Visit **park** / **gym** / **studio** for social, exercise and creative practice.
+6. Advance (or sleep repeatedly) to Day 8 to observe a single $300 rent charge.
+
+Market and studio **jobs** unlock at Career XP 50 and Creative XP 50; practice/shopping remain available immediately.
 
 ## Structure
 
-- `scenes/boot.tscn`: runnable scene and lighting.
-- `scenes/actors/player.tscn`: CharacterBody3D, visible body, collision, orbit pivot, spring arm and camera.
-- `scenes/world/`: neighborhood and the apartment/cafe interior sub-scenes. Geometry is built by their scripts at runtime; run the scene to view it.
-- `scripts/interactions/interaction_component.gd`: reusable signal-based marker, focus ring, label and activation.
-- `scripts/world/`: original blockout helpers, six-location layout and portal coordinator.
-- `scenes/ui/`, `scripts/ui/`: HUD, map, pause, transient toast and debug display.
-- `tests/`: runnable physics/input integration suite, CI-style runner and rendered visual checks.
-- `docs/`: QC report, complete file inventory and captured screenshots.
-- `assets/licenses/`: asset provenance.
+- `data/`: player preset and tunable action/balance JSON.
+- `scripts/autoload/`: `WorldClock`, `GameState`, `EconomySystem`, `SimulationSystem`.
+- `scenes/world/`: neighborhood plus apartment/cafe/market/studio interiors.
+- `scripts/interactions/`: reusable Interactable with optional `action_id` / portal `destination`.
+- `scenes/ui/`, `scripts/ui/`: HUD, phone, map, pause, action confirm, toast, debug.
+- `tests/`: simulation QC, physics/input integration, CI runner.
+- `docs/`: QC report, file inventory, screenshots.
 
 ## Automated verification
-
-Python 3 is needed only for the convenience runner. With Godot 4.7.2 on PATH:
 
 ```sh
 GODOT=godot python3 life-mode/tests/run_checks.py
 ```
 
-Or set `GODOT` to the full editor binary path. The runner rejects other engine versions, imports the project, executes actual physics/input integration checks, exports a Linux resource PCK, and boots that pack. It rejects engine/script errors even if Godot returns exit code zero. Linux sandbox environments must allow the editor's local sockets and provide writable XDG directories (the runner supplies temporary defaults).
+Runs Godot 4.7.2 import, **53 simulation checks**, **100 integration checks**, Linux resource-pack export, and packed boot. Rejects engine/script errors even if Godot returns exit code zero.
 
-For optional screenshot and camera checks on a desktop display:
+Optional rendered checks on a desktop display:
 
 ```sh
 godot --path life-mode --audio-driver Dummy --script res://tests/visual_check.gd
 ```
 
-This creates `docs/screenshots/*.png` and checks actual captured mouse input and spring-arm collision. Do not run it headlessly. Screenshots can be regenerated; desktop OS mouse focus must belong to the game window.
-
-## Export
-
-`export_presets.cfg` defines a Linux x86_64 preset. The runner verifies a **resource pack**, not a standalone executable. For an executable, install matching Godot 4.7.2 export templates, create `exports/`, then use the editor Export dialog or:
-
-```sh
-godot --headless --path life-mode --export-debug Linux exports/life-mode.x86_64
-```
-
-Choose an absolute output path if launching from another working directory. Windows remains the primary manual acceptance platform; add a Windows export preset when preparing that platform's executable.
-
 ## Scope and limitations
 
-Only Milestone 0 is implemented. No clock, needs, economy, work shifts, NPCs, jobs, phone, objectives, save/load or Milestone 1 progression is present. Market and studio interiors are deliberately deferred. Missing `data/` presets referenced by the design pack are unnecessary for this milestone. All original design documents remain unchanged.
+Milestone 1 adds clock, needs, economy, jobs/activities, phone HUD and market/studio interiors. **Not included yet:** named NPCs/schedules, dialogue memory, authored events, tutorial arc, disk save/load UI, polished art/audio. Serialize/deserialize exists on `GameState` for tests and as foundation for Milestone 3 persistence.
 
-See [QC results and in-editor checklist](docs/QC.md). Passing automated checks does not replace the remaining human playtest, Windows acceptance, 1080p performance measurements, or 30-minute roaming test. After those pass, the next Milestone 1 task is a canonical GameState and integer-minute WorldClock; it is not implemented here.
+See [QC results](docs/QC.md). Next unblocked task after M1 human QC: Milestone 2 living neighborhood (NPC roster, schedules, NavMesh, relationships).

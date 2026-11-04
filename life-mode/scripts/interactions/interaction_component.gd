@@ -6,6 +6,7 @@ signal activated(target: InteractionComponent)
 @export var display_name: String = "Location"
 @export var action_text: String = "Inspect"
 @export var destination: StringName
+@export var action_id: StringName
 var highlight: MeshInstance3D
 var focus_material: StandardMaterial3D
 var activation_count: int = 0

@@ -8,6 +8,11 @@ const LOCATIONS: Array[Dictionary] = [
  {"id": &"park", "title": "05 / PUBLIC PARK", "at": Vector3(-83, 0, -26), "color": Color("92ab82")},
  {"id": &"gym", "title": "06 / GYM COURTYARD", "at": Vector3(83, 0, -26), "color": Color("ba8f76")}
 ]
+const ENTERABLE: Array[StringName] = [&"apartment", &"cafe", &"market", &"studio"]
+const OUTDOOR_ACTIONS := {
+ &"park": &"hang_out",
+ &"gym": &"exercise"
+}
 var markers: Dictionary = {}
 
 func _ready() -> void:
@@ -39,8 +44,14 @@ func _ready() -> void:
   var marker := InteractionComponent.new()
   marker.location_id = id
   marker.display_name = location.title
-  marker.destination = id if id in [&"apartment", &"cafe"] else &""
-  marker.action_text = "Enter" if not marker.destination.is_empty() else "Inspect"
+  if id in ENTERABLE:
+   marker.destination = id
+   marker.action_text = "Enter"
+  elif OUTDOOR_ACTIONS.has(id):
+   marker.action_id = OUTDOOR_ACTIONS[id]
+   marker.action_text = "Start"
+  else:
+   marker.action_text = "Inspect"
   marker.position = at + Vector3(0, 0, 13)
   add_child(marker)
   markers[id] = marker

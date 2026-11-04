@@ -10,33 +10,6 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 [  83% ] first_scan_filesystem | Starting file scan...
 [ DONE ] first_scan_filesystem
 
-[   0% ] _update_scan_actions | Started Scanning actions... (5 steps)
-[   0% ] _update_scan_actions | cafe.png
-[  16% ] _update_scan_actions | district.png
-[  33% ] _update_scan_actions | map.png
-[  50% ] _update_scan_actions | pause.png
-[  66% ] _update_scan_actions | world.png
-[ DONE ] _update_scan_actions
-
-[   0% ] reimport | Started (Re)Importing Assets (5 steps)
-[   0% ] reimport | Preparing files to reimport...
-[  16% ] reimport | Preparing files to reimport...
-[  33% ] reimport | Preparing files to reimport...
-[  50% ] reimport | Preparing files to reimport...
-[  66% ] reimport | Preparing files to reimport...
-[   0% ] reimport | Executing pre-reimport operations...
-[   0% ] reimport | cafe.png
-[  16% ] reimport | district.png
-[  33% ] reimport | map.png
-[  50% ] reimport | pause.png
-[  66% ] reimport | world.png
-[  83% ] reimport | Finalizing Asset Import...
-[ DONE ] reimport
-
-[   0% ] reimport | Started (Re)Importing Assets (5 steps)
-[   0% ] reimport | Executing post-reimport operations...
-[ DONE ] reimport
-
 [   0% ] loading_editor_layout | Started Loading editor (5 steps)
 [   0% ] loading_editor_layout | Loading editor layout...
 [  16% ] loading_editor_layout | Loading docks...
@@ -44,12 +17,70 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
+PASS / new game starts Day 1 09:00
+PASS / starting bank is $1250
+PASS / starting energy
+PASS / first rent due at Day 8 00:00
+PASS / advancing past midnight starts day 2
+PASS / 23:50 + 20m => 00:10
+PASS / energy decays ~3 per hour (got 71, expected 71±1)
+PASS / fullness decays ~4 per hour (got 61, expected 61±1)
+PASS / need clamped: energy
+PASS / need clamped: fullness
+PASS / need clamped: hygiene
+PASS / need clamped: social
+PASS / need clamped: happiness
+PASS / need clamped: health
+PASS / cafe shift rejected away from cafe
+PASS / rejected action changes nothing
+PASS / cafe shift resolves
+PASS / cafe shift pays $120
+PASS / cafe shift grants +12 career XP
+PASS / cafe shift advances 4 game hours
+PASS / cafe shift reduces energy after work + decay
+PASS / work goal completed
+PASS / groceries rejected when underfunded
+PASS / failed grocery purchase spends nothing
+PASS / failed grocery purchase adds no inventory
+PASS / failed grocery purchase advances no time
+PASS / groceries add 5 portions
+PASS / groceries cost $35
+PASS / home meal consumes one portion
+PASS / home meal raises fullness
+PASS / sleep resolves
+PASS / sleep advances 420 minutes
+PASS / sleep restores energy
+PASS / market job locked at career XP 0
+PASS / market job unlocks at career XP 50
+PASS / exact $300 rent from $1250
+PASS / no arrears when fully paid
+PASS / rent id recorded
+PASS / duplicate advance_to same minute does not rebill
+PASS / further advance after rent does not rebill same due
+PASS / partial rent drains available cash only
+PASS / shortfall stored as arrears
+PASS / unpaid rent applies happiness penalty
+PASS / reset restores preset before load
+PASS / deserialize restores money
+PASS / deserialize restores clock
+PASS / deserialize restores career XP
+PASS / deserialize restores groceries
+PASS / deserialize restores ledger
+PASS / cafe work station exists
+PASS / action confirm pauses game
+PASS / confirmed cafe shift credits bank via HUD
+PASS / confirm closes action modal
+RESULT / 53 checks, 0 failures
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
 PASS / requested Godot 4.7.2 engine
 PASS / six unique neighborhood markers
-PASS / six landmarks and two exit components
+PASS / six landmarks and interior stations/exits
 PASS / spawn settles on ground
 PASS / visible player geometry
 PASS / third-person camera is current
+PASS / simulation clock starts at Day 1 09:00
+PASS / simulation bank starts at $1250
 PASS / mapped input: move_forward
 PASS / mapped input: move_back
 PASS / mapped input: move_left
@@ -57,6 +88,7 @@ PASS / mapped input: move_right
 PASS / mapped input: sprint
 PASS / mapped input: interact
 PASS / mapped input: map
+PASS / mapped input: phone
 PASS / mapped input: pause
 PASS / mapped input: debug_overlay
 PASS / walking moves at approximately 5 m/s
@@ -85,15 +117,27 @@ PASS / exit round trip: cafe
 PASS / forward focus within 2.5m: market
 PASS / E activates exactly once: market
 PASS / landmark recorded: market
+PASS / enter interior: market
+PASS / interior floor collision: market
+PASS / exit prompt reachable: market
+PASS / exit round trip: market
 PASS / forward focus within 2.5m: studio
 PASS / E activates exactly once: studio
 PASS / landmark recorded: studio
+PASS / enter interior: studio
+PASS / interior floor collision: studio
+PASS / exit prompt reachable: studio
+PASS / exit round trip: studio
 PASS / forward focus within 2.5m: park
 PASS / E activates exactly once: park
 PASS / landmark recorded: park
+PASS / outdoor activity opens confirm: park
+PASS / cancel outdoor activity confirm: park
 PASS / forward focus within 2.5m: gym
 PASS / E activates exactly once: gym
 PASS / landmark recorded: gym
+PASS / outdoor activity opens confirm: gym
+PASS / cancel outdoor activity confirm: gym
 PASS / out-of-range target has no prompt
 PASS / E outside radius cannot activate
 PASS / target behind camera direction has no focus
@@ -119,6 +163,8 @@ PASS / map blocks movement and E
 PASS / Esc closes map without opening another modal
 PASS / Esc opens pause
 PASS / Esc resumes
+PASS / Tab opens phone
+PASS / Tab closes phone
 PASS / movement recovers after repeated menu cycles
 PASS / continuous street/perimeter traversal: (0.0, 0.05, 120.0)
 PASS / continuous street/perimeter traversal: (-120.0, 0.05, 0.0)
@@ -127,7 +173,7 @@ PASS / continuous street/perimeter traversal: (-120.0, 0.05, -120.0)
 PASS / continuous street/perimeter traversal: (120.0, 0.05, -120.0)
 PASS / continuous street/perimeter traversal: (120.0, 0.05, 120.0)
 PASS / F3 toggles debug overlay
-RESULT / 83 checks, 0 failures
+RESULT / 100 checks, 0 failures
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
 [   0% ] first_scan_filesystem | Started Project initialization (5 steps)
@@ -140,39 +186,55 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 [ DONE ] first_scan_filesystem
 
 [   0% ] savepack | Started Packing (102 steps)
-[   1% ] savepack | Storing File: res://scripts/world/interior.gdc
-[   8% ] savepack | Storing File: res://scripts/world/blockout.gdc
-[  15% ] savepack | Storing File: res://scripts/world/neighborhood.gdc
-[  22% ] savepack | Storing File: res://scripts/world/main.gdc
-[  29% ] savepack | Storing File: res://scripts/ui/map_view.gdc
-[  35% ] savepack | Storing File: res://.godot/exported/133200997/export-087d785bf5027725196895bd45adeefe-player.scn
-[  42% ] savepack | Storing File: res://.godot/exported/133200997/export-f26fe175837e58804f1c48b99041ac16-hud.scn
-[  50% ] savepack | Storing File: res://.godot/exported/133200997/export-3d120d343b031b57a69a1c7f10ff83c9-apartment.scn
-[  57% ] savepack | Storing File: res://.godot/exported/133200997/export-62b2a7e042148a88bf2c0749b8a510e9-cafe.scn
-[  64% ] savepack | Storing File: res://.godot/exported/133200997/export-98a69665cb22442b8327bf5b6c53b78b-neighborhood.scn
-[  70% ] savepack | Storing File: res://.godot/exported/133200997/export-c3c40bb4d42d26c7c74cc88080d6723d-boot.scn
-[  77% ] savepack | Storing File: res://scripts/actors/player_controller.gdc
-[  84% ] savepack | Storing File: res://scripts/interactions/interaction_component.gdc
-[  91% ] savepack | Storing File: res://scripts/ui/hud_controller.gdc
-[  91% ] savepack | Storing File: res://scripts/world/interior.gd.remap
-[  91% ] savepack | Storing File: res://scripts/world/blockout.gd.remap
-[  91% ] savepack | Storing File: res://scripts/world/neighborhood.gd.remap
-[  91% ] savepack | Storing File: res://scripts/world/main.gd.remap
-[  91% ] savepack | Storing File: res://scripts/ui/map_view.gd.remap
-[  91% ] savepack | Storing File: res://scenes/actors/player.tscn.remap
-[  91% ] savepack | Storing File: res://scenes/ui/hud.tscn.remap
-[  91% ] savepack | Storing File: res://scenes/world/interiors/apartment.tscn.remap
-[  91% ] savepack | Storing File: res://scenes/world/interiors/cafe.tscn.remap
-[  91% ] savepack | Storing File: res://scenes/world/neighborhood.tscn.remap
-[  91% ] savepack | Storing File: res://scenes/boot.tscn.remap
-[  91% ] savepack | Storing File: res://scripts/actors/player_controller.gd.remap
-[  91% ] savepack | Storing File: res://scripts/interactions/interaction_component.gd.remap
-[  91% ] savepack | Storing File: res://scripts/ui/hud_controller.gd.remap
-[  91% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
-[  91% ] savepack | Storing File: res://.godot/uid_cache.bin
-[  91% ] savepack | Storing File: res://project.binary
+[   1% ] savepack | Storing File: res://data/game_balance.json
+[   5% ] savepack | Storing File: res://data/player_preset.json
+[   9% ] savepack | Storing File: res://scripts/world/interior.gdc
+[  14% ] savepack | Storing File: res://scripts/world/neighborhood.gdc
+[  18% ] savepack | Storing File: res://scripts/world/main.gdc
+[  22% ] savepack | Storing File: res://scripts/world/blockout.gdc
+[  27% ] savepack | Storing File: res://scripts/world/visual_polish.gdc
+[  31% ] savepack | Storing File: res://.godot/exported/133200997/export-087d785bf5027725196895bd45adeefe-player.scn
+[  34% ] savepack | Storing File: res://.godot/exported/133200997/export-f26fe175837e58804f1c48b99041ac16-hud.scn
+[  39% ] savepack | Storing File: res://.godot/exported/133200997/export-3d120d343b031b57a69a1c7f10ff83c9-apartment.scn
+[  43% ] savepack | Storing File: res://.godot/exported/133200997/export-62b2a7e042148a88bf2c0749b8a510e9-cafe.scn
+[  47% ] savepack | Storing File: res://.godot/exported/133200997/export-76b973ae63217718ba18a390921ede3a-market.scn
+[  52% ] savepack | Storing File: res://.godot/exported/133200997/export-d300c5946a6f152e84400320c5040c72-studio.scn
+[  56% ] savepack | Storing File: res://.godot/exported/133200997/export-98a69665cb22442b8327bf5b6c53b78b-neighborhood.scn
+[  60% ] savepack | Storing File: res://.godot/exported/133200997/export-c3c40bb4d42d26c7c74cc88080d6723d-boot.scn
+[  65% ] savepack | Storing File: res://scripts/actors/player_controller.gdc
+[  68% ] savepack | Storing File: res://scripts/autoload/economy_system.gdc
+[  72% ] savepack | Storing File: res://scripts/autoload/game_state.gdc
+[  77% ] savepack | Storing File: res://scripts/autoload/simulation_system.gdc
+[  81% ] savepack | Storing File: res://scripts/autoload/world_clock.gdc
+[  85% ] savepack | Storing File: res://scripts/interactions/interaction_component.gdc
+[  90% ] savepack | Storing File: res://scripts/ui/hud_controller.gdc
+[  94% ] savepack | Storing File: res://scripts/ui/map_view.gdc
+[  94% ] savepack | Storing File: res://scripts/world/interior.gd.remap
+[  94% ] savepack | Storing File: res://scripts/world/neighborhood.gd.remap
+[  94% ] savepack | Storing File: res://scripts/world/main.gd.remap
+[  94% ] savepack | Storing File: res://scripts/world/blockout.gd.remap
+[  94% ] savepack | Storing File: res://scripts/world/visual_polish.gd.remap
+[  94% ] savepack | Storing File: res://scenes/actors/player.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/ui/hud.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/world/interiors/apartment.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/world/interiors/cafe.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/world/interiors/market.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/world/interiors/studio.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/world/neighborhood.tscn.remap
+[  94% ] savepack | Storing File: res://scenes/boot.tscn.remap
+[  94% ] savepack | Storing File: res://scripts/actors/player_controller.gd.remap
+[  94% ] savepack | Storing File: res://scripts/autoload/economy_system.gd.remap
+[  94% ] savepack | Storing File: res://scripts/autoload/game_state.gd.remap
+[  94% ] savepack | Storing File: res://scripts/autoload/simulation_system.gd.remap
+[  94% ] savepack | Storing File: res://scripts/autoload/world_clock.gd.remap
+[  94% ] savepack | Storing File: res://scripts/interactions/interaction_component.gd.remap
+[  94% ] savepack | Storing File: res://scripts/ui/hud_controller.gd.remap
+[  94% ] savepack | Storing File: res://scripts/ui/map_view.gd.remap
+[  94% ] savepack | Storing File: res://.godot/global_script_class_cache.cfg
+[  94% ] savepack | Storing File: res://.godot/uid_cache.bin
+[  94% ] savepack | Storing File: res://project.binary
 [ DONE ] savepack
 
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-CHECKS PASSED / editor import, integration suite, resource-pack export, packed boot
+CHECKS PASSED / editor import, simulation suite, integration suite, resource-pack export, packed boot
