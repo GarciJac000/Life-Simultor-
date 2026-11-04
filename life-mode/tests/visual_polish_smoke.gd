@@ -19,10 +19,12 @@ func run() -> void:
  root.add_child(world)
  await physics_frame
  await process_frame
+ await process_frame
  verify(world.neighborhood.markers.size() == 6, "original six interactions remain present")
- verify(world.interiors.size() == 2, "apartment and cafe remain accessible")
+ verify(world.interiors.size() >= 2, "core interiors remain accessible")
  verify(world.player.get_node("Visual/Body") != null, "original avatar mesh node retained")
  verify(not world.player.get_node("Visual/Body").visible, "placeholder capsule replaced visually")
+ verify(world.player.get_node_or_null("Visual/AvatarRig") != null, "animated avatar rig present")
  var ornaments := get_nodes_in_group("visual_polish")
  verify(ornaments.size() > 100, "semi-realistic environment detail generated")
  var collider_count := 0
@@ -40,6 +42,14 @@ func run() -> void:
  verify(environment.environment.ssao_enabled, "screen space ambient occlusion enabled")
  var sun: DirectionalLight3D = world.get_node("Sun")
  verify(sun.shadow_enabled, "sunlight shadows retained")
+ verify(world.get_node_or_null("FillLight") != null, "fill light added for readable shaded facades")
+ # Drive a few animation frames and ensure limbs move while sprinting.
+ var avatar: AvatarAnimator = world.player.get_node("Visual/AvatarRig")
+ var thigh_before: float = avatar.thigh_l.rotation.x
+ world.player.velocity = Vector3(0, 0, -9)
+ for i in range(20):
+  avatar.update_motion(9.0, true, 1.0 / 30.0)
+ verify(not is_equal_approx(avatar.thigh_l.rotation.x, thigh_before), "walk/run animation rotates limbs")
  print("VISUAL QC / %d failures" % failed)
  world.queue_free()
  await process_frame

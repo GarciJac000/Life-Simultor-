@@ -12,10 +12,12 @@ const INTERACTION_RANGE: float = 2.5
 @onready var visual: Node3D = $Visual
 var focused: InteractionComponent
 var gravity: float = 20.0
+var avatar: AvatarAnimator
 
 func _ready() -> void:
  arm.add_excluded_object(get_rid())
  VisualPolish.decorate_avatar(visual)
+ avatar = visual.get_node_or_null("AvatarRig") as AvatarAnimator
  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,7 +42,8 @@ func _physics_process(delta: float) -> void:
  var direction := pivot.global_basis * Vector3(input.x, 0, input.y)
  direction.y = 0
  direction = direction.normalized()
- var speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+ var sprinting := Input.is_action_pressed("sprint")
+ var speed := SPRINT_SPEED if sprinting else WALK_SPEED
  velocity.x = direction.x * speed
  velocity.z = direction.z * speed
  if not is_on_floor():
@@ -48,8 +51,11 @@ func _physics_process(delta: float) -> void:
  else:
   velocity.y = 0
  move_and_slide()
+ var planar := Vector3(velocity.x, 0, velocity.z).length()
  if direction.length_squared() > 0.01:
   visual.rotation.y = lerp_angle(visual.rotation.y, atan2(-direction.x, -direction.z), 12.0 * delta)
+ if is_instance_valid(avatar):
+  avatar.update_motion(planar, sprinting and planar > 0.2, delta)
  update_focus()
 
 func update_focus() -> void:
@@ -90,4 +96,6 @@ func teleport(at: Vector3, yaw: float = 0.0) -> void:
  visual.rotation.y = yaw
  arm.rotation.x = -0.28
  arm.spring_length = 5.5
+ if is_instance_valid(avatar):
+  avatar.reset_pose()
  reset_physics_interpolation()

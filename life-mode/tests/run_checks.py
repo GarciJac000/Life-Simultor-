@@ -36,6 +36,8 @@ def main():
         run(["--editor", "--import", "--quit"], env)
         run(["--fixed-fps", "60", "--script", "res://tests/simulation_test.gd"], env,
             r"RESULT / [1-9]\d* checks, 0 failures")
+        run(["--fixed-fps", "60", "--script", "res://tests/visual_polish_smoke.gd"], env,
+            r"VISUAL QC / 0 failures")
         run(["--fixed-fps", "60", "--script", "res://tests/smoke.gd"], env,
             r"RESULT / [1-9]\d* checks, 0 failures")
         pack = tmp / "life-mode.pck"
@@ -43,7 +45,7 @@ def main():
         if not pack.is_file() or pack.stat().st_size == 0:
             raise SystemExit("Resource export missing or empty")
         run(["--main-pack", str(pack), "--quit-after", "120"], env)
-        print("CHECKS PASSED / editor import, simulation suite, integration suite, resource-pack export, packed boot")
+        print("CHECKS PASSED / editor import, simulation suite, visual suite, integration suite, resource-pack export, packed boot")
 
 
 if __name__ == "__main__":
