@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "tick_minutes": 10,
+  "realtime_game_minutes_per_second": 2.0,
+  "need_subunit_scale": 60,
+  "hourly_decay": {
+    "energy": 3,
+    "fullness": 4,
+    "hygiene": 2,
+    "social": 2
+  },
+  "happiness_low_need_threshold": 30,
+  "happiness_hourly_penalty": 1,
+  "health_crisis_threshold": 15,
+  "health_crisis_hours": 6,
+  "health_daily_penalty": 1,
+  "actions": {
+    "work_cafe": {
+      "title": "Work cafe shift",
+      "location": "cafe",
+      "duration_minutes": 240,
+      "money": 120,
+      "energy": -12,
+      "happiness": -3,
+      "career_xp": 12,
+      "requires_job": "cafe"
+    },
+    "work_market": {
+      "title": "Work market shift",
+      "location": "market",
+      "duration_minutes": 240,
+      "money": 110,
+      "energy": -10,
+      "career_xp": 10,
+      "requires_job": "market",
+      "requires_career_xp": 50
+    },
+    "work_studio": {
+      "title": "Work studio shift",
+      "location": "studio",
+      "duration_minutes": 240,
+      "money": 100,
+      "energy": -8,
+      "creative_xp": 10,
+      "requires_job": "studio",
+      "requires_creative_xp": 50
+    },
+    "buy_groceries": {
+      "title": "Buy groceries",
+      "location": "market",
+      "duration_minutes": 15,
+      "money": -35,
+      "groceries": 5
+    },
+    "eat_home": {
+      "title": "Eat home meal",
+      "location": "apartment",
+      "duration_minutes": 30,
+      "fullness": 30,
+      "requires_groceries": 1
+    },
+    "eat_cafe": {
+      "title": "Eat cafe meal",
+      "location": "cafe",
+      "duration_minutes": 30,
+      "money": -18,
+      "fullness": 35,
+      "happiness": 3
+    },
+    "shower": {
+      "title": "Take shower",
+      "location": "apartment",
+      "duration_minutes": 20,
+      "hygiene": 45
+    },
+    "sleep": {
+      "title": "Sleep",
+      "location": "apartment",
+      "duration_minutes": 420,
+      "energy": 55
+    },
+    "hang_out": {
+      "title": "Hang out in the park",
+      "location": "park",
+      "duration_minutes": 60,
+      "social": 15,
+      "happiness": 6
+    },
+    "make_music": {
+      "title": "Make music",
+      "location": "studio",
+      "duration_minutes": 120,
+      "creative_xp": 18,
+      "energy": -10,
+      "happiness": 8
+    },
+    "exercise": {
+      "title": "Exercise",
+      "location": "gym",
+      "duration_minutes": 60,
+      "health": 2,
+      "energy": -10,
+      "happiness": 4
+    }
+  },
+  "jobs_unlocked_at_start": ["cafe"]
+}

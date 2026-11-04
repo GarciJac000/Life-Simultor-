@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "name": "Alex Morgan",
+  "age": 21,
+  "money": 1250,
+  "absolute_game_minutes": 540,
+  "needs": {
+    "energy": 74,
+    "fullness": 65,
+    "hygiene": 80,
+    "social": 45,
+    "happiness": 68,
+    "health": 91
+  },
+  "inventory": {
+    "groceries": 0
+  },
+  "skills": {
+    "career_xp": 0,
+    "creative_xp": 0
+  },
+  "rent": {
+    "amount": 300,
+    "arrears": 0,
+    "next_due_minute": 10080
+  },
+  "goals": [
+    {
+      "id": "work_one_shift",
+      "title": "Work one cafe shift",
+      "done": false
+    },
+    {
+      "id": "cook_at_home",
+      "title": "Cook a meal at home",
+      "done": false
+    },
+    {
+      "id": "buy_groceries",
+      "title": "Buy groceries",
+      "done": false
+    },
+    {
+      "id": "explore_studio",
+      "title": "Practice at the studio",
+      "done": false
+    },
+    {
+      "id": "pay_rent_ready",
+      "title": "Keep enough for rent ($300)",
+      "done": false
+    }
+  ]
+}
